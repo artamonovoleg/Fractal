@@ -7,5 +7,8 @@ out vec4 fragColor;
 
 void main()
 {
-    fragColor = vec4(uv, 1.0f, 1.0f);
+    float cx = uv.x;
+    if (uv.x >= 0.5)
+        cx = 1.0f;
+    fragColor = vec4(cx, uv.y, 1.0f, 1.0f);
 }
