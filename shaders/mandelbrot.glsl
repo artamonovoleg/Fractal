@@ -9,6 +9,10 @@ out vec4 fragColor;
 
 int maxIterations = 50;
 
+// vec2 colors [2] {
+// 	vec3(0.2, 0.3, 0.4),
+// 	vec3(0.2, 0.3, 0.5)
+// }
 
 float map(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -31,54 +35,10 @@ vec3 IterateMandelbrot(vec2 coord)
 	{
 		z = squareImaginary(z) + coord;
 		if (length(z) > 2) 
-		{
-			if (i == 0)
-				return vec3(0.2, 0.3, 0.4);
-			else
-			if (i == 1)
-				return vec3(0.2, 0.3, 0.5);
-			else
-			if (i == 2)
-				return vec3(0.2, 0.3, 0.6);
-			else
-			if (i == 3)
-				return vec3(0.2, 0.3, 0.7);
-			else
-			if (i == 4)
-				return vec3(0.2, 0.3, 0.8);
-			else
-			if (i == 5)
-				return vec3(0.2, 0.3, 0.9);
-			else
-			if (i == 6)
-				return vec3(0.2, 0.4, 0.9);
-			else
-			if (i == 7)
-				return vec3(0.2, 0.5, 0.9);
-			else
-			if (i == 8)
-				return vec3(0.2, 0.6, 0.9);
-			else
-			if (i == 9)
-				return vec3(0.2, 0.7, 0.9);
-			else
-			if (i == 10)
-				return vec3(0.2, 0.8, 0.9);
-			else
-			if (i == 11)
-				return vec3(0.2, 0.9, 0.9);
-			else
-			if (i == 12)
-				return vec3(0.3, 0.9, 0.9);
-			else
-			if (i == 13)
-				return vec3(0.4, 0.9, 0.9);
-			else
-				return vec3(0.9412, 0.8627, 0.1529);
-		}
+			return vec3(0.0, float(i) / maxIterations, float(i) / maxIterations);
 	}
 
-	return vec3(0.9412, 0.102, 0.102);
+	return vec3(0.0);
 }
 
 void main()
