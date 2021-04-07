@@ -1,7 +1,4 @@
 #version 330 core
-#extension GL_ARB_separate_shader_objects : enable
-
-layout(location = 0) out vec2 uv;
 
 void main() 
 {
@@ -9,5 +6,4 @@ void main()
     float y = float(((uint(gl_VertexID) + 1u) / 3u)%2u); 
 
     gl_Position = vec4(-1.0f + x*2.0f, -1.0f+y*2.0f, 0.0f, 1.0f);
-    uv = vec2(x, y);
 }
