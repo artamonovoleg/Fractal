@@ -5,6 +5,13 @@
 
 #include "Shader.hpp"
 
+glm::vec2 GetResolution(GLFWwindow* pWindow)
+{
+    int width, height;
+    glfwGetWindowSize(pWindow, &width, &height);
+    return glm::vec2(width, height);
+}
+
 int main()
 {
     try
@@ -14,8 +21,9 @@ int main()
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-        int width = 1920, height = 1080;
+        int width = 600, height = 500;
         GLFWwindow* pWindow = glfwCreateWindow(width, height, "Fractol", nullptr, nullptr);
 
         if (!pWindow)
@@ -27,10 +35,10 @@ int main()
             throw std::runtime_error("Failed to initialize GLAD");
 
         // setup OpenGL state
-        glViewport(0, 0, width, height);
         glClearColor(0.2, 0.3, 0.4, 1.0);
+        glViewport(0, 0, width, height);
 
-        Shader shader("../shaders/vert.glsl", "../shaders/frag.glsl");
+        Shader shader("../shaders/vert.glsl", "../shaders/mandelbrot.glsl");
         
 
         unsigned int vao, vbo;
@@ -43,7 +51,7 @@ int main()
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
             shader.Bind();
-
+            shader.SetVec2("u_resolution", GetResolution(pWindow));
             glBindVertexArray(vao);
             glDrawArrays(GL_TRIANGLES, 0, 6);
 
