@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "ShaderLibrary.hpp"
+#include "FractalLoader.hpp"
 
 glm::vec2 GetResolution(GLFWwindow* pWindow)
 {
@@ -38,11 +39,7 @@ int main()
         glClearColor(0.2, 0.3, 0.4, 1.0);
         glViewport(0, 0, width, height);
 
-        ShaderLibrary lib;
-        lib.Load("Mandelbrot", "../shaders/vert.glsl", "../shaders/mandelbrot.glsl");
-        lib.Load("Julia", "../shaders/vert.glsl", "../shaders/julia.glsl");
-        
-        Shader* currentShader = lib.Get("Julia");
+        FractalLoader loader;
 
         unsigned int vao, vbo;
         glGenVertexArrays(1, &vao);
@@ -52,16 +49,11 @@ int main()
             glfwPollEvents();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            
-            currentShader->Bind();
-            currentShader->SetVec2("u_resolution", GetResolution(pWindow));
+
+            loader.BindFractal(GetResolution(pWindow));
             glBindVertexArray(vao);
             glDrawArrays(GL_TRIANGLES, 0, 6);
-
-            if (glfwGetKey(pWindow, GLFW_KEY_M))
-                currentShader = lib.Get("Mandelbrot");
-            if (glfwGetKey(pWindow, GLFW_KEY_J))
-                currentShader = lib.Get("Julia");
+            loader.OnUpdate(pWindow);
 
             glfwSwapBuffers(pWindow);
         }

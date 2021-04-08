@@ -1,0 +1,25 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "FractalLoader.hpp"
+
+FractalLoader::FractalLoader()
+{
+    m_Library.Load("Mandelbrot", "../shaders/vert.glsl", "../shaders/mandelbrot.glsl");
+    m_Library.Load("Julia", "../shaders/vert.glsl", "../shaders/julia.glsl");
+    m_CurrentFractal = m_Library.Get("Mandelbrot");
+}
+
+void FractalLoader::BindFractal(const glm::vec2& resolution)
+{
+    m_CurrentFractal->Bind();
+    m_CurrentFractal->SetVec2("u_resolution", resolution);
+}
+
+void FractalLoader::OnUpdate(GLFWwindow* pWindow)
+{
+    if (glfwGetKey(pWindow, GLFW_KEY_M))
+        m_CurrentFractal = m_Library.Get("Mandelbrot");
+    else
+    if (glfwGetKey(pWindow, GLFW_KEY_J))
+        m_CurrentFractal = m_Library.Get("Julia");
+}

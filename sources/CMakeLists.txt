@@ -10,6 +10,7 @@ include_directories(../third_party/glfw/include
 
 add_executable(fractol  main.cpp
                         Shader.cpp
-                        ShaderLibrary.cpp)
+                        ShaderLibrary.cpp
+                        FractalLoader.cpp)
 
 target_link_libraries(fractol glfw glad)
