@@ -4,7 +4,7 @@ uniform vec2 u_resolution;
 
 out vec4 fragColor;
 
-int maxIterations = 90;
+int maxIterations = 80;
 
 float Map(float x, float in_min, float in_max, float out_min, float out_max)
 {
