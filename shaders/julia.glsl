@@ -4,7 +4,7 @@ uniform vec2 u_resolution;
 
 out vec4 fragColor;
 
-int maxIterations = 50;
+int maxIterations = 100;
 
 float Map(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -28,8 +28,11 @@ vec3 IterateJulia(vec2 coord)
 		z.x = z.x - 0.4;
 		z.y = z.y - 0.6;
 
-		if (length(z) > 4) 
-			return vec3(1.0 - float(i) / maxIterations,  1.0 - float(i) / maxIterations, 1.0 - float(i) / maxIterations);
+		if (length(z) > 2)
+		{
+			float color = 1.0 - float(i) / maxIterations;
+			return vec3(color);
+		}
 	}
 
 	return vec3(0.0);

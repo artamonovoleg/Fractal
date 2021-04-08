@@ -26,8 +26,11 @@ vec3 IterateMandelbrot(vec2 coord)
 	for(int i = 0; i < maxIterations; i++)
 	{
 		z = SquareImaginary(z) + coord;
-		if (length(z) > 2) 
-			return vec3(0.0, float(i) / maxIterations, float(i) / maxIterations);
+		if (length(z) > 2)
+		{
+			float color = 1.0 - float(i) / maxIterations;
+			return vec3(color);
+		}
 	}
 
 	return vec3(0.0);

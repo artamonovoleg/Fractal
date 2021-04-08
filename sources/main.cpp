@@ -38,8 +38,6 @@ int main()
         glClearColor(0.2, 0.3, 0.4, 1.0);
         glViewport(0, 0, width, height);
 
-        // Shader shader("../shaders/vert.glsl", "../shaders/julia.glsl");
-
         ShaderLibrary lib;
         lib.Load("Mandelbrot", "../shaders/vert.glsl", "../shaders/mandelbrot.glsl");
         lib.Load("Julia", "../shaders/vert.glsl", "../shaders/julia.glsl");
