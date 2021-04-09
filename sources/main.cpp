@@ -23,6 +23,10 @@ int main()
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        
+        #ifdef __APPLE__
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        #endif
 
         int width = 600, height = 500;
         GLFWwindow* pWindow = glfwCreateWindow(width, height, "Fractol", nullptr, nullptr);
