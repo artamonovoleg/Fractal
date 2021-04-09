@@ -40,8 +40,8 @@ vec3 IterateJulia(vec2 coord)
 
 void main()
 {
-	vec2 coord = gl_FragCoord.xy / u_resolution - vec2(1.0);
-	coord = vec2(Map(coord.x, -1.0, 1.0, -1.5, 1.5), Map(coord.y, -1.0, 1.0, -1.5, 1.5));
+	vec2 coord = gl_FragCoord.xy / u_resolution - vec2(0.5);
+	coord = vec2(Map(coord.x, -0.5, 0.5, -1.5, 1.5), Map(coord.y, -0.5, 0.5, -1.5, 1.5));
 
 	vec3 c = IterateJulia(coord);
     fragColor = vec4(c, 1.0f);
