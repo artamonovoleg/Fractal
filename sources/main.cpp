@@ -23,7 +23,7 @@ int main()
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-        
+
         #ifdef __APPLE__
             glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         #endif
@@ -41,7 +41,6 @@ int main()
 
         // setup OpenGL state
         glClearColor(0.2, 0.3, 0.4, 1.0);
-        glViewport(0, 0, width, height);
 
         FractalLoader loader;
 
@@ -53,6 +52,7 @@ int main()
             glfwPollEvents();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glViewport(0, 0, width, height);
 
             loader.BindFractal(GetResolution(pWindow));
             glBindVertexArray(vao);
