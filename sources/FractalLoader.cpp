@@ -16,6 +16,7 @@ void FractalLoader::BindFractal(const glm::vec2& resolution)
 {
     m_CurrentFractal->Bind();
     m_CurrentFractal->SetVec2("u_resolution", resolution);
+    m_CurrentFractal->SetFloat("u_time", glfwGetTime());
 }
 
 void FractalLoader::OnUpdate(GLFWwindow* pWindow)
